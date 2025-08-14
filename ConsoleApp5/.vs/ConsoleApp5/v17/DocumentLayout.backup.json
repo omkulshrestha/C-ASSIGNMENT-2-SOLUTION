@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\ConsoleApp5\\",
+  "WorkspaceRootPath": "D:\\DotNet\\ConsoleApp5\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FADC247A-1A1A-493B-B2A8-435B0E6A82EA}|ConsoleApp5\\ConsoleApp5.csproj|d:\\consoleapp5\\consoleapp5\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FADC247A-1A1A-493B-B2A8-435B0E6A82EA}|ConsoleApp5\\ConsoleApp5.csproj|d:\\dotnet\\consoleapp5\\consoleapp5\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FADC247A-1A1A-493B-B2A8-435B0E6A82EA}|ConsoleApp5\\ConsoleApp5.csproj|solutionrelative:consoleapp5\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -28,11 +28,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "D:\\ConsoleApp5\\ConsoleApp5\\Program.cs",
+              "DocumentMoniker": "D:\\DotNet\\ConsoleApp5\\ConsoleApp5\\Program.cs",
               "RelativeDocumentMoniker": "ConsoleApp5\\Program.cs",
-              "ToolTip": "D:\\ConsoleApp5\\ConsoleApp5\\Program.cs*",
+              "ToolTip": "D:\\DotNet\\ConsoleApp5\\ConsoleApp5\\Program.cs*",
               "RelativeToolTip": "ConsoleApp5\\Program.cs*",
-              "ViewState": "AgIAAOAAAAAAAAAAAAAswNcAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAIwK0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-14T04:49:20.185Z",
               "EditorCaption": ""

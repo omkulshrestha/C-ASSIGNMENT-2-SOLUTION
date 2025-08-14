@@ -1,238 +1,173 @@
 ﻿using System;
-using System.Collections.Generic;
-
-class UserProfile
+class Employee
 {
-    private string username;
-    private string password;
-    private string email;
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public double Salary { get; set; }
 
-    public void SetUsername(string name) { username = name; }
-    public string GetUsername() { return username; }
-
-    public void SetPassword(string pass)
+    public void DisplayDetails()
     {
-        if (pass.Length >= 6) password = pass;
-        else Console.WriteLine("Password must be at least 6 characters.");
+        Console.WriteLine($"Name: {Name}, Age: {Age}, Salary: {Salary}");
     }
-    public string GetPassword() { return password; }
+}
+class BankAccount
+{
+    public string AccountNumber { get; set; }
+    public string AccountHolderName { get; set; }
+    public double Balance { get; private set; }
 
-    public void SetEmail(string mail)
+    public void Deposit(double amount)
     {
-        if (mail.Contains("@")) email = mail;
-        else Console.WriteLine("Invalid email.");
+        Balance += amount;
+        Console.WriteLine($"Deposited: {amount}, New Balance: {Balance}");
     }
-    public string GetEmail() { return email; }
+
+    public void Withdraw(double amount)
+    {
+        if (amount <= Balance)
+        {
+            Balance -= amount;
+            Console.WriteLine($"Withdrawn: {amount}, Remaining Balance: {Balance}");
+        }
+        else
+        {
+            Console.WriteLine("Insufficient balance.");
+        }
+    }
+
+    public void DisplayAccount()
+    {
+        Console.WriteLine($"Account: {AccountNumber}, Holder: {AccountHolderName}, Balance: {Balance}");
+    }
+}
+static class MathHelper
+{
+    public static double CalculateAverage(int[] numbers)
+    {
+        double sum = 0;
+        foreach (var num in numbers) sum += num;
+        return numbers.Length > 0 ? sum / numbers.Length : 0;
+    }
+}
+static class Logger
+{
+    public static void LogMessage(string message)
+    {
+        Console.WriteLine($"[LOG] {message}");
+    }
+}
+
+partial class Person
+{
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+}
+partial class Person
+{
+    public void PrintFullName()
+    {
+        Console.WriteLine($"Full Name: {FirstName} {LastName}");
+    }
+}
+partial class Employee2
+{
+    public string Name { get; set; }
+    public double BaseSalary { get; set; }
+    public double Bonus { get; set; }
+}
+partial class Employee2
+{
+    public double CalculateSalary()
+    {
+        return BaseSalary + Bonus;
+    }
+}
+
+abstract class Shape
+{
+    public abstract double CalculateArea();
+}
+class Circle : Shape
+{
+    public double Radius { get; set; }
+    public override double CalculateArea() => Math.PI * Radius * Radius;
+}
+class Rectangle : Shape
+{
+    public double Width { get; set; }
+    public double Height { get; set; }
+    public override double CalculateArea() => Width * Height;
+}
+
+abstract class Animal
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public abstract void MakeSound();
+}
+class Dog : Animal
+{
+    public override void MakeSound() => Console.WriteLine("Woof! Woof!");
+}
+class Cat : Animal
+{
+    public override void MakeSound() => Console.WriteLine("Meow!");
 }
 
 class Vehicle
 {
-    public string Make;
-    public string Model;
-    public int Year;
+    public void StartEngine() => Console.WriteLine("Engine started.");
+    public void StopEngine() => Console.WriteLine("Engine stopped.");
 }
-
-class Truck : Vehicle
+sealed class Car : Vehicle { }
+class BankAccount2
 {
-    public void DisplayDetails()
-    {
-        Console.WriteLine($"Truck: {Make} {Model}, {Year}");
-    }
+    public string AccountNumber { get; set; }
+    public double Balance { get; set; }
 }
-
-class Bus : Vehicle
+sealed class SavingsAccount : BankAccount2
 {
-    public void DisplayDetails()
-    {
-        Console.WriteLine($"Bus: {Make} {Model}, {Year}");
-    }
+    public double InterestRate { get; set; }
+    public double CalculateInterest() => Balance * InterestRate / 100;
 }
-
-class Calculator
-{
-    public int Add(int a, int b) => a + b;
-    public float Add(float a, float b) => a + b;
-    public double Add(double a, double b, double c) => a + b + c;
-}
-
-abstract class Employee
-{
-    public string Name;
-    public abstract double CalculateSalary();
-}
-
-class FullTimeEmployee : Employee
-{
-    public double MonthlySalary;
-    public override double CalculateSalary() => MonthlySalary;
-}
-
-class PartTimeEmployee : Employee
-{
-    public double HourlyRate;
-    public int HoursWorked;
-    public override double CalculateSalary() => HourlyRate * HoursWorked;
-}
-
-class Student
-{
-    public string Name;
-    public int RollNo;
-    public double Marks;
-
-    public Student()
-    {
-        Name = "Unknown";
-        RollNo = 0;
-        Marks = 0;
-    }
-
-    public Student(string name, int roll)
-    {
-        Name = name;
-        RollNo = roll;
-        Marks = 0;
-    }
-
-    public Student(string name, int roll, double marks)
-    {
-        Name = name;
-        RollNo = roll;
-        Marks = marks;
-    }
-
-    public void Display()
-    {
-        Console.WriteLine($"Name: {Name}, Roll No: {RollNo}, Marks: {Marks}");
-    }
-}
-
-class Product
-{
-    public int ProductID { get; set; }
-    public string ProductName { get; set; }
-
-    private double price;
-    public double Price
-    {
-        get => price;
-        set
-        {
-            if (value >= 0) price = value;
-            else Console.WriteLine("Price cannot be negative.");
-        }
-    }
-
-    public int Quantity { get; set; }
-
-    public void PrintDetails()
-    {
-        Console.WriteLine($"Product ID: {ProductID}, Name: {ProductName}, Price: {Price}, Quantity: {Quantity}");
-    }
-}
-
-class Book
-{
-    public string Title;
-    public bool IsAvailable = true;
-}
-
-class Member
-{
-    public string Name;
-    public List<Book> BorrowedBooks = new List<Book>();
-}
-
-class Library
-{
-    public List<Book> Books = new List<Book>();
-    public List<Member> Members = new List<Member>();
-
-    public void RegisterMember(Member m)
-    {
-        Members.Add(m);
-        Console.WriteLine($"Member {m.Name} registered.");
-    }
-
-    public void LendBook(Book book, Member member)
-    {
-        if (book.IsAvailable)
-        {
-            book.IsAvailable = false;
-            member.BorrowedBooks.Add(book);
-            Console.WriteLine($"{member.Name} borrowed {book.Title}");
-        }
-        else
-        {
-            Console.WriteLine($"{book.Title} is not available.");
-        }
-    }
-
-    public void DisplayAvailableBooks()
-    {
-        foreach (var book in Books)
-        {
-            if (book.IsAvailable)
-                Console.WriteLine($"Available: {book.Title}");
-        }
-    }
-}
-
 class Program
 {
-    static void Main()
+    static void Main(string[] args)
     {
-        Console.WriteLine("Experiment 1:");
-        var user1 = new UserProfile();
-        user1.SetUsername("om_kulshrestha");
-        user1.SetPassword("om@123");
-        user1.SetEmail("omkulshrestha24@gmail.com");
-        Console.WriteLine($"User: {user1.GetUsername()}, Email: {user1.GetEmail()}");
+        Employee emp = new Employee { Name = "om_kul",Age = 24, Salary = 100000 };
+        emp.DisplayDetails();
 
-        var user2 = new UserProfile();
-        user2.SetUsername("rahul");
-        user2.SetPassword("rahul@123");
-        user2.SetEmail("rahulverma29@gmail.com");
+        BankAccount acc = new BankAccount { AccountNumber = "12345", AccountHolderName = "Om Kulshrestha" };
+        acc.Deposit(10000);
+        acc.Withdraw(5000);
+        acc.DisplayAccount();
 
-        Console.WriteLine("\nExperiment 2:");
-        var truck = new Truck { Make = "Tata", Model = "LPT", Year = 2020 };
-        var bus = new Bus { Make = "Volvo", Model = "9400", Year = 2022 };
-        truck.DisplayDetails();
-        bus.DisplayDetails();
+        int[] nums = { 10, 20, 30, 40 };
+        Console.WriteLine("Average: " + MathHelper.CalculateAverage(nums));
 
-        Console.WriteLine("\nExperiment 3:");
-        var calc = new Calculator();
-        Console.WriteLine(calc.Add(5, 3));
-        Console.WriteLine(calc.Add(4.5f, 3.2f));
-        Console.WriteLine(calc.Add(1.1, 2.2, 3.3));
+        Logger.LogMessage("This is a log entry.");
 
-        Console.WriteLine("\nExperiment 4:");
-        var ft = new FullTimeEmployee { Name = "John", MonthlySalary = 50000 };
-        var pt = new PartTimeEmployee { Name = "Jane", HourlyRate = 200, HoursWorked = 30 };
-        Console.WriteLine($"{ft.Name} Salary: {ft.CalculateSalary()}");
-        Console.WriteLine($"{pt.Name} Salary: {pt.CalculateSalary()}");
+        Person p = new Person { FirstName = "Om", LastName = "Kulshrestha" };
+        p.PrintFullName();
 
-        Console.WriteLine("\nExperiment 5:");
-        var s1 = new Student();
-        var s2 = new Student("Rahul", 101);
-        var s3 = new Student("Sneha", 102, 89.5);
-        s1.Display();
-        s2.Display();
-        s3.Display();
+        Employee2 e2 = new Employee2 { Name = "Rahul", BaseSalary = 40000, Bonus = 5000 };
+        Console.WriteLine($"Total Salary: {e2.CalculateSalary()}");
 
-        Console.WriteLine("\nExperiment 6:");
-        var p1 = new Product { ProductID = 1, ProductName = "Mouse", Price = 599, Quantity = 10 };
-        var p2 = new Product { ProductID = 2, ProductName = "Keyboard", Price = -100, Quantity = 5 };
-        p1.PrintDetails();
-        p2.PrintDetails();
+        Shape circle = new Circle { Radius = 5 };
+        Shape rect = new Rectangle { Width = 4, Height = 6 };
+        Console.WriteLine($"Circle Area: {circle.CalculateArea()}");
+        Console.WriteLine($"Rectangle Area: {rect.CalculateArea()}");
 
-        Console.WriteLine("\nExperiment 7:");
-        var library = new Library();
-        library.Books.Add(new Book { Title = "C# Basics" });
-        library.Books.Add(new Book { Title = "OOP Concepts" });
-        var member = new Member { Name = "Karan" };
-        library.RegisterMember(member);
-        library.LendBook(library.Books[0], member);
-        library.DisplayAvailableBooks();
+        Animal dog = new Dog { Name = "Max", Age = 3 };
+        Animal cat = new Cat { Name = "Cutie", Age = 2 };
+        dog.MakeSound();
+        cat.MakeSound();
+
+        Car myCar = new Car();
+        myCar.StartEngine();
+        myCar.StopEngine();
+
+        SavingsAccount sa = new SavingsAccount { AccountNumber = "67890", Balance = 10000, InterestRate = 5 };
+        Console.WriteLine($"Interest: {sa.CalculateInterest()}");
     }
 }
